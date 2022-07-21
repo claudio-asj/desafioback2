@@ -1,0 +1,21 @@
+server: 
+  port: 8080
+  servlet: 
+    context-path: /api
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://auth.bagarote.com.br/auth/realms/bagarote-desafio
+          jwk-set-uri: https://auth.bagarote.com.br/auth/realms/bagarote-desafio/protocol/openid-connect/certs
+  jpa:
+    show-sql: true
+    generate-ddl: false 
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/db_pdv}
+    username: ${DATASOURCE_USERNAME:dev}
+    password: ${DATASOURCE_PASSWORD:123}
+    driver-class-name: org.postgresql.Driver
