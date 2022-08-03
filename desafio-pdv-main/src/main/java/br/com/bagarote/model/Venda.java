@@ -17,11 +17,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import br.com.bagarote.controller.form.VendaForm;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
 @Data
 @Entity
 @Builder
@@ -53,4 +55,13 @@ public class Venda implements Serializable{
 	@OneToMany
 	private List<VendaProduto> produtos;
 
+	public Venda(VendaForm form) {
+		//ClienteRepository clienteRepository;
+		//this.cliente = clienteRepository.getById(form.getIdCliente());
+		this.dataVenda = form.getDataVenda();
+		this.metodoPagamento = form.getMetodoPagamento();
+		this.produtos = form.getProdutos();
+	}
+	
+	
 }

@@ -1,6 +1,8 @@
 package br.com.bagarote.controller;
 
 import java.util.List;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,13 +18,13 @@ public class ProdutoController {
 	private final ProdutoRepository produtoRepository;
 	
 	@GetMapping("empresa/{idEmpresa}/produto")
-	public List<ProdutoDto> getAll() {
+	public ResponseEntity<List<ProdutoDto>> getAll() {
 		List<Produto> produtos = produtoRepository.findAll();
-	    return ProdutoDto.converter(produtos);
+	    return ResponseEntity.ok(ProdutoDto.converter(produtos));
     }
 	@GetMapping("empresa/{idEmpresa}/produto/{idProduto}")
-	public ProdutoDto getByIdProduto(@PathVariable Long idProduto) {
-	    return new ProdutoDto(produtoRepository.getById(idProduto));
+	public ResponseEntity<ProdutoDto> getByIdProduto(@PathVariable Long idProduto) {
+	    return ResponseEntity.ok(new ProdutoDto(produtoRepository.getById(idProduto)));
     }
 	
 }
