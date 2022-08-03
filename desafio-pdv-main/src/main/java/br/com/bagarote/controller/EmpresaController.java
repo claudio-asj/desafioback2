@@ -1,5 +1,7 @@
 package br.com.bagarote.controller;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.bagarote.controller.dto.EmpresaDto;
 import br.com.bagarote.model.Empresa;
 import br.com.bagarote.repository.EmpresaRepository;
 import lombok.AllArgsConstructor;
@@ -21,12 +24,15 @@ public class EmpresaController {
 	private final EmpresaRepository empresaRepository;
 	
 	@GetMapping("empresa")
-	public ResponseEntity<?> getaAll() {
-	    return ResponseEntity.ok().body(empresaRepository.findAll());
+	public List<EmpresaDto> getaAll() {
+	    List<Empresa> empresas = empresaRepository.findAll();
+	    return EmpresaDto.converter(empresas);
     }
 	@GetMapping("empresa/{idEmpresa}")
-	public ResponseEntity<?> getByIdEmpresa(@PathVariable Long idEmpresa) {
-	    return ResponseEntity.ok().body(empresaRepository.findById(idEmpresa).orElse(null));
+	public EmpresaDto getByIdEmpresa(@PathVariable Long idEmpresa) {
+	    Empresa empresa = empresaRepository.getById(idEmpresa);
+	    EmpresaDto resposta = new EmpresaDto(empresa);
+	    return resposta;
     }
 	@PostMapping("empresa")
 	public ResponseEntity<?> create(@RequestBody br.com.bagarote.model.Empresa createEmpresa) {
