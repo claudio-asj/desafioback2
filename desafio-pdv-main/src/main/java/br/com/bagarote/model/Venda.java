@@ -56,8 +56,8 @@ public class Venda implements Serializable{
 	private List<VendaProduto> produtos;
 
 	public Venda(VendaForm form) {
-		//ClienteRepository clienteRepository;
-		//this.cliente = clienteRepository.getById(form.getIdCliente());
+		this.idVenda = form.getIdVenda();
+		this.cliente.setIdCliente(form.getIdCliente());
 		this.dataVenda = form.getDataVenda();
 		this.metodoPagamento = form.getMetodoPagamento();
 		this.produtos = form.getProdutos();

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import br.com.bagarote.controller.form.EmpresaForm;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,4 +40,12 @@ public class Empresa implements Serializable{
 	private List<Produto> produtos;
 	@OneToMany(mappedBy = "empresa")
 	private List<Venda> vendas;
+	
+	public Empresa(EmpresaForm form) {
+		this.nomeFantasia = form.getNomeFantasia();
+		this.razaoSocial = form.getRazaoSocial();
+		this.cnpj = form.getCnpj();
+		this.telefone = form.getTelefone();
+		this.responsavelLegal = form.getResponsavelLegal();
+	}
 }

@@ -1,6 +1,7 @@
 package br.com.bagarote.controller.dto;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import br.com.bagarote.model.Empresa;
 
@@ -14,6 +15,10 @@ public class EmpresaDto {
 		this.nomeFantasia = empresa.getNomeFantasia();
 	}
 	
+	public EmpresaDto(Optional<Empresa> empresa) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}

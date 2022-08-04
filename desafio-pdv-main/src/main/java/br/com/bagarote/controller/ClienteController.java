@@ -28,4 +28,6 @@ public class ClienteController {
 	    List<Cliente> clientes = clienteRepository.findByEmpresaIdEmpresa(idCliente);
 	    return ResponseEntity.ok(ClienteDto.converter(clientes));
     }
+	
+	
 }
