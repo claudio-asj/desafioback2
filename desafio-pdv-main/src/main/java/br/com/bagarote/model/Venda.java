@@ -30,6 +30,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Venda implements Serializable{
+	
+
 	private static final long serialVersionUID = 1L;
 	@Id
 	@SequenceGenerator(name = "SequenceVenda", sequenceName = "SEQ_VENDA", allocationSize = 1)
@@ -54,14 +56,11 @@ public class Venda implements Serializable{
 	
 	@OneToMany
 	private List<VendaProduto> produtos;
-
-	public Venda(VendaForm form) {
-		this.idVenda = form.getIdVenda();
-		this.cliente.setIdCliente(form.getIdCliente());
-		this.dataVenda = form.getDataVenda();
-		this.metodoPagamento = form.getMetodoPagamento();
-		this.produtos = form.getProdutos();
-	}
 	
+	public Venda(VendaForm form) {
+		this.dataVenda = form.getDataVenda();
+		this.produtos = form.getProdutos();
+		this.metodoPagamento = form.getMetodoPagamento();
+	}
 	
 }

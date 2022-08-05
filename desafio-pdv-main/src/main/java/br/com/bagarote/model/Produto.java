@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import br.com.bagarote.controller.form.ProdutoForm;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,4 +37,10 @@ public class Produto implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "ID_EMPRESA")
 	private Empresa empresa;
+	
+	public Produto(ProdutoForm form) {
+		this.produto = form.getProduto();
+		this.descricao = form.getDescricao();
+		this.valorBase = form.getValorBase();
+	}
 }

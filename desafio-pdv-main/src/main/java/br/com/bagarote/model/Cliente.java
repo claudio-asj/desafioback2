@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import br.com.bagarote.controller.form.ClienteForm;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -33,5 +34,14 @@ public class Cliente implements Serializable{
 	private Empresa empresa;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
 	private List<ClienteEndereco> enderecos;
+	public Cliente() {
+		
+	}
+	
+	public Cliente(ClienteForm form) {
+		this.nome = form.getNome();
+		this.cpf = form.getCpf();
+		this.telefone = form.getTelefone();
+	}
 
 }

@@ -1,5 +1,6 @@
 package br.com.bagarote.controller.form;
 
+
 public class EmpresaForm {
 	
 	private String nomeFantasia;
@@ -39,6 +40,4 @@ public class EmpresaForm {
 	public void setResponsavelLegal(String responsavelLegal) {
 		this.responsavelLegal = responsavelLegal;
 	}
-	
-	
 }

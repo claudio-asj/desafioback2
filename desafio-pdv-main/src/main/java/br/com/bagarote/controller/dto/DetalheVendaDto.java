@@ -34,7 +34,6 @@ public class DetalheVendaDto {
 		this.valorAcrescimo = venda.getValorAcrescimo();
 		this.valorTotal = venda.getValorTotal();
 		this.valorPago = venda.getValorPago();
-		this.produtos = venda.getProdutos();
 	}
 
 	public Long getIdVenda() {

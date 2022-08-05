@@ -2,12 +2,16 @@ package br.com.bagarote.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bagarote.controller.dto.ClienteDto;
+import br.com.bagarote.controller.form.ClienteForm;
 import br.com.bagarote.model.Cliente;
 import br.com.bagarote.repository.ClienteRepository;
 import lombok.AllArgsConstructor;
@@ -30,4 +34,13 @@ public class ClienteController {
     }
 	
 	
+	@PostMapping("/empresa/{idEmpresa}/cliente")
+	public ResponseEntity<?> newCliente(@PathVariable Long idEmpresa, @RequestBody ClienteForm form){
+		//ver se ja existe essa cliente
+		if(clienteRepository.existsByEmpresaIdEmpresaAndCpf(idEmpresa, form.getCpf())) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		}else {
+			return ResponseEntity.status(HttpStatus.CREATED).body(clienteRepository.save(new Cliente(form)));
+		}
+	}
 }

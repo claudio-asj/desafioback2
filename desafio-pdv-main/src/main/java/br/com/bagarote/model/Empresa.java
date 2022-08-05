@@ -48,4 +48,14 @@ public class Empresa implements Serializable{
 		this.telefone = form.getTelefone();
 		this.responsavelLegal = form.getResponsavelLegal();
 	}
+	
+	public Empresa converter(EmpresaForm form, Empresa empresa) {
+		empresa.setNomeFantasia(form.getNomeFantasia());
+		empresa.setRazaoSocial(form.getRazaoSocial());
+		empresa.setCnpj(form.getCnpj());
+		empresa.setTelefone(form.getTelefone());
+		empresa.setResponsavelLegal(form.getResponsavelLegal());
+		return empresa;
+	}
+	
 }
