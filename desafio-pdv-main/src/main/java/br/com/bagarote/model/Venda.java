@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -54,12 +55,12 @@ public class Venda implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private MetodoPagamento metodoPagamento;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.PERSIST)
 	private List<VendaProduto> produtos;
+	
 	
 	public Venda(VendaForm form) {
 		this.dataVenda = form.getDataVenda();
-		this.produtos = form.getProdutos();
 		this.metodoPagamento = form.getMetodoPagamento();
 	}
 	

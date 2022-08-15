@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.bagarote.controller.dto.ClienteDto;
 import br.com.bagarote.controller.form.ClienteForm;
 import br.com.bagarote.model.Cliente;
+import br.com.bagarote.model.Empresa;
 import br.com.bagarote.repository.ClienteRepository;
+import br.com.bagarote.repository.EmpresaRepository;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -21,6 +23,7 @@ import lombok.AllArgsConstructor;
 public class ClienteController {
 	
 	private final ClienteRepository clienteRepository;
+	private final EmpresaRepository empresaRepositoy;
 	
 	@GetMapping("/empresa/{idEmpresa}/cliente")
 	public ResponseEntity<List<ClienteDto>> getAll() {
@@ -40,7 +43,10 @@ public class ClienteController {
 		if(clienteRepository.existsByEmpresaIdEmpresaAndCpf(idEmpresa, form.getCpf())) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}else {
-			return ResponseEntity.status(HttpStatus.CREATED).body(clienteRepository.save(new Cliente(form)));
+			Cliente resposta = new Cliente(form);
+			Empresa empresa = empresaRepositoy.getById(form.getIdEmpresa());
+			resposta.setEmpresa(empresa);
+			return ResponseEntity.status(HttpStatus.CREATED).body(clienteRepository.save(resposta	));
 		}
 	}
 }

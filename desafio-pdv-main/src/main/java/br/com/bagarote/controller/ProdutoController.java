@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.bagarote.controller.dto.DetalheProdutoDto;
 import br.com.bagarote.controller.dto.ProdutoDto;
 import br.com.bagarote.controller.form.ProdutoForm;
+import br.com.bagarote.model.Empresa;
 import br.com.bagarote.model.Produto;
 import br.com.bagarote.repository.EmpresaRepository;
 import br.com.bagarote.repository.ProdutoRepository;
@@ -40,7 +41,8 @@ public class ProdutoController {
 	@PostMapping("empresa/{idEmpresa}/produto")
 	public ResponseEntity<?> newProduto(@PathVariable Long idEmpresa , @RequestBody ProdutoForm form){
 		Produto resposta = new Produto(form);
-		resposta.setEmpresa(empresaRepository.getById(idEmpresa));
+		Empresa empresa = empresaRepository.getById(form.getIdEmpresa());
+		resposta.setEmpresa(empresa);
 		return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(resposta));
 	}
 	

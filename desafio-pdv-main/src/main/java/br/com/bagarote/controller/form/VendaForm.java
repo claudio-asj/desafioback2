@@ -2,6 +2,9 @@ package br.com.bagarote.controller.form;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import br.com.bagarote.model.MetodoPagamento;
 import br.com.bagarote.model.VendaProduto;
 
@@ -10,9 +13,10 @@ public class VendaForm {
 	
 	private Long idCliente;
 	private Long idEmpresa;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime dataVenda;
 	private MetodoPagamento metodoPagamento;
-	private List<VendaProduto> produtos;
+	private List<VendaProdutoForm> produtos;
 	
 
 	public Long getIdCliente() {
@@ -27,10 +31,9 @@ public class VendaForm {
 	public MetodoPagamento getMetodoPagamento() {
 		return metodoPagamento;
 	}
-	public List<VendaProduto> getProdutos() {
+	public List<VendaProdutoForm> getProdutos() {
 		return produtos;
 	}
-		
-
+	
 }
 	

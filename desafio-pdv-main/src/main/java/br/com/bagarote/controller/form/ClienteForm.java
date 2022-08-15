@@ -5,6 +5,7 @@ public class ClienteForm {
 	private String nome;
 	private String cpf;
 	private String telefone;
+	private Long idEmpresa;
 
 	
 	public String getNome() {
@@ -15,6 +16,10 @@ public class ClienteForm {
 	}
 	public String getTelefone() {
 		return telefone;
+	}
+	
+	public Long getIdEmpresa() {
+		return idEmpresa;
 	}
 	
 }

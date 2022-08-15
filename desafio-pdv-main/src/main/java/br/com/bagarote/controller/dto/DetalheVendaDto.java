@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.com.bagarote.controller.form.VendaProdutoForm;
 import br.com.bagarote.model.MetodoPagamento;
 import br.com.bagarote.model.Venda;
 import br.com.bagarote.model.VendaProduto;
@@ -21,7 +22,7 @@ public class DetalheVendaDto {
 	private BigDecimal valorAcrescimo;
 	private BigDecimal valorTotal;
 	private BigDecimal valorPago;
-	private List<VendaProduto> produtos;
+	private List<VendaProdutoForm> produtos;
 	
 	public DetalheVendaDto(Venda venda) {
 		this.idVenda = venda.getIdVenda();
@@ -34,6 +35,8 @@ public class DetalheVendaDto {
 		this.valorAcrescimo = venda.getValorAcrescimo();
 		this.valorTotal = venda.getValorTotal();
 		this.valorPago = venda.getValorPago();
+		
+		//precisocomolcar um for na venda pra virar o dto
 	}
 
 	public Long getIdVenda() {
@@ -76,7 +79,7 @@ public class DetalheVendaDto {
 		return valorPago;
 	}
 
-	public List<VendaProduto> getProdutos() {
+	public List<VendaProdutoForm> getProdutos() {
 		return produtos;
 	}
 	
