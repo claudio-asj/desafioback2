@@ -33,7 +33,7 @@ public class VendaController {
 	    List<Venda> vendas = vendaRepository.findAll();
 	    return ResponseEntity.ok(VendaDto.converter(vendas));
     }
-	//não sei fazer lista por paginas
+	//lista por paginas
 	
 	@GetMapping("/empresa/{idEmpresa}/venda/{idVenda}")
 	public ResponseEntity<DetalheVendaDto> getDetalheVenda(@PathVariable Long idEmpresa, Long idVenda) {
@@ -46,6 +46,7 @@ public class VendaController {
 	public ResponseEntity<?> newVenda(@RequestBody VendaForm form, @PathVariable Long idEmpresa){
 		Venda venda = vendaService.newVenda(form);
 		DetalheVendaDto resposta = new DetalheVendaDto(venda);
+		//(new DetalheVendaDto(vendaService.newVenda(form))
 		return ResponseEntity.status(HttpStatus.CREATED).body(resposta);
 
 		

@@ -6,7 +6,6 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.bagarote.model.MetodoPagamento;
-import br.com.bagarote.model.VendaProduto;
 
 
 public class VendaForm {

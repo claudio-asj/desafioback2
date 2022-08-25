@@ -2,10 +2,10 @@ package br.com.bagarote.controller.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.bagarote.controller.form.VendaProdutoForm;
 import br.com.bagarote.model.MetodoPagamento;
 import br.com.bagarote.model.Venda;
 import br.com.bagarote.model.VendaProduto;
@@ -22,7 +22,7 @@ public class DetalheVendaDto {
 	private BigDecimal valorAcrescimo;
 	private BigDecimal valorTotal;
 	private BigDecimal valorPago;
-	private List<VendaProdutoForm> produtos;
+	private List<VendaProdutoDto> produtos;
 	
 	public DetalheVendaDto(Venda venda) {
 		this.idVenda = venda.getIdVenda();
@@ -35,10 +35,26 @@ public class DetalheVendaDto {
 		this.valorAcrescimo = venda.getValorAcrescimo();
 		this.valorTotal = venda.getValorTotal();
 		this.valorPago = venda.getValorPago();
-		
-		//precisocomolcar um for na venda pra virar o dto
+
+		//ainda to usando o List do java
+		for(VendaProduto produto:venda.getProdutos()) {
+			
+			VendaProdutoDto novo = new VendaProdutoDto();
+			novo.setQtd(produto.getQtd());
+			//novo.setIdVendaProduto(produto.getVendaProdutoId());
+			
+			novo.setIdProduto(produto.getVendaProdutoId().getProdutoid());
+			
+			if(this.produtos == null) {
+				this.produtos = new ArrayList<VendaProdutoDto>();
+			}
+			
+			this.produtos.add(novo);//preciso pegar o id do produto !!!!
+		}
 	}
 
+	
+	
 	public Long getIdVenda() {
 		return idVenda;
 	}
@@ -79,7 +95,7 @@ public class DetalheVendaDto {
 		return valorPago;
 	}
 
-	public List<VendaProdutoForm> getProdutos() {
+	public List<VendaProdutoDto> getProdutos() {
 		return produtos;
 	}
 	

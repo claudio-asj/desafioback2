@@ -41,6 +41,10 @@ public class VendaProduto implements Serializable {
 		@ManyToOne
 		@JoinColumn(name = "ID_PRODUTO")
 		private Produto produto;
+		
+		public Long getProdutoid() {
+			return this.produto.getIdProduto();
+		}
 	}
 	
 }
