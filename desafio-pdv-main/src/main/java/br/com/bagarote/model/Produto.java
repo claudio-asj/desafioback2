@@ -2,6 +2,7 @@ package br.com.bagarote.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Base64;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,5 +43,6 @@ public class Produto implements Serializable{
 		this.produto = form.getProduto();
 		this.descricao = form.getDescricao();
 		this.valorBase = form.getValorBase();
+		this.imagemProduto = Base64.getDecoder().decode(form.getImagemProduto());
 	}
 }

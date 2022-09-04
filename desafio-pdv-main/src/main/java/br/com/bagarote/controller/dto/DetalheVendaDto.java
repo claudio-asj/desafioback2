@@ -9,7 +9,9 @@ import java.util.stream.Collectors;
 import br.com.bagarote.model.MetodoPagamento;
 import br.com.bagarote.model.Venda;
 import br.com.bagarote.model.VendaProduto;
+import lombok.Data;
 
+@Data
 public class DetalheVendaDto {
 	
 	private Long idVenda;
@@ -23,6 +25,7 @@ public class DetalheVendaDto {
 	private BigDecimal valorTotal;
 	private BigDecimal valorPago;
 	private List<VendaProdutoDto> produtos;
+	private String nomeCliente;
 	
 	public DetalheVendaDto(Venda venda) {
 		this.idVenda = venda.getIdVenda();
@@ -55,49 +58,6 @@ public class DetalheVendaDto {
 
 	
 	
-	public Long getIdVenda() {
-		return idVenda;
-	}
-
-	public Long getIdEmpresa() {
-		return idEmpresa;
-	}
-
-	public String getNomeFantasia() {
-		return nomeFantasia;
-	}
-
-	public long getIdCliente() {
-		return idCliente;
-	}
-
-	public LocalDateTime getDataVenda() {
-		return dataVenda;
-	}
-
-	public MetodoPagamento getMetodoPagamento() {
-		return metodoPagamento;
-	}
-
-	public BigDecimal getValorDesconto() {
-		return valorDesconto;
-	}
-
-	public BigDecimal getValorAcrescimo() {
-		return valorAcrescimo;
-	}
-
-	public BigDecimal getValorTotal() {
-		return valorTotal;
-	}
-
-	public BigDecimal getValorPago() {
-		return valorPago;
-	}
-
-	public List<VendaProdutoDto> getProdutos() {
-		return produtos;
-	}
 	
 	public static List<DetalheVendaDto> converter(List<Venda> vendas){
 		return vendas.stream().map(DetalheVendaDto::new).collect(Collectors.toList());
