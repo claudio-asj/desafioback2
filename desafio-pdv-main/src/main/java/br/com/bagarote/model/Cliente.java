@@ -43,5 +43,9 @@ public class Cliente implements Serializable{
 		this.cpf = form.getCpf();
 		this.telefone = form.getTelefone();
 	}
+	public void converter(ClienteForm form) {
+		this.nome = form.getNome();
+		this.telefone = form.getTelefone();
+	}
 
 }

@@ -48,7 +48,8 @@ public class ProdutoController {
 	@DeleteMapping("empresa/{idEmpresa}/produto/{idProduto}")
 	public ResponseEntity<?> deleteProduto(@PathVariable Long idEmpresa, @PathVariable Long idProduto){
 		if (produtoRepository.findByEmpresaIdEmpresaAndIdProduto(idEmpresa, idProduto).isPresent()) {
-			produtoRepository.deleteEmpresaIdEmpresaAndIdProduto(idEmpresa, idProduto);
+			Produto produto = produtoRepository.findByEmpresaIdEmpresaAndIdProduto(idEmpresa, idProduto).get();
+			produtoRepository.delete(produto);
 			return ResponseEntity.ok(null);
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
@@ -72,13 +73,12 @@ public class ProdutoController {
 	}
 	
 	@PutMapping("empresa/{idEmpresa}/produto/{idProduto}")
-	public ResponseEntity<?> updateProduto(@PathVariable Long idProduto, @RequestBody ProdutoForm form){
-		Long id = idProduto;
-		if(produtoRepository.findById(idProduto).isPresent()) {
+	public ResponseEntity<?> updateProduto(@PathVariable Long idProduto,@PathVariable Long idEmpresa, @RequestBody ProdutoForm form){
+		if(produtoRepository.findByEmpresaIdEmpresaAndIdProduto(idEmpresa, idProduto).isPresent()) {
 			Produto resposta = new Produto(form);
 			Empresa empresa = empresaRepository.getById(form.getIdEmpresa());
 			resposta.setEmpresa(empresa);
-			resposta.setIdProduto(id);
+			resposta.setIdProduto(idProduto);
 			produtoRepository.save(resposta);
 			return ResponseEntity.ok().body(null);
 		}else {

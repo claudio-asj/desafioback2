@@ -75,7 +75,9 @@ public class ClienteController {
 			Cliente resposta = new Cliente(update);
 			Empresa empresa = empresaRepositoy.getById(update.getIdEmpresa());
 			resposta.setEmpresa(empresa);
-			return ResponseEntity.status(HttpStatus.CREATED).body(clienteRepository.save(resposta));
+			resposta.setIdCliente(idCliente);
+			clienteRepository.save(resposta);
+			return ResponseEntity.status(HttpStatus.CREATED).body(null);
 		}else {
 			
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
